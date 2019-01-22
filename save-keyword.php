@@ -1,26 +1,22 @@
+<link href="http://newsite.ilovebaby.com.tw/assets/js/bootstrap/mingbootstrap-theme.min.css" rel="stylesheet">
+<link href="http://newsite.ilovebaby.com.tw/assets/js/bootstrap/mingbootstrap.min.css" rel="stylesheet">
+<link href="http://newsite.ilovebaby.com.tw/assets/css/ilovebaby.css" rel="stylesheet">
 <style type="text/css">
-	*{
-		padding: 0;
-		margin: 0;
-	}
-
-	body{
-		font-family: sans-serif;
-	}
-
 	.rel{
 		position: relative;
 	}
 
 	.dropdown{
 		position: absolute;
-		top: 30px;
+		top: 40px;
 		left: 0;
 		right: 0;
-	}
-
-	input{
-		height: 30px;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-bottom-right-radius: 50px;
+	    border-bottom-left-radius: 50px;
+	    border-radius: 0px;
+	    background: #FFFFFF;
 	}
 
 	.sbab{
@@ -31,6 +27,10 @@
 		cursor: pointer;
 	}
 
+	.item span{
+		font-size: 15px;
+	}
+
 	.clear {
 	  clear: both;
 	  display: block;
@@ -38,18 +38,35 @@
 	  visibility: hidden;
 	  width: 0;
 	  height: 0;
+	  margin: 0;
 	}
 </style>
-<form id="search" action="save-keyword.php" method="post" class="rel">
+<section class="navblock">
+	<form action="" method="get" name="searchbanner" id="searchbanner">
+		<div class="searchBar rel" style="display: block">
+		    <div class="searchBarBox">
+		        <input id="skey" name="skey" type="text" onkeyup="value=value.replace(/&amp;/g,'')" onfocus="this.value=''" placeholder="請輸入關鍵字...">
+		        <input name="imageField" type="image" src="https://newsite.ilovebaby.com.tw/templates/new/images/search.gif" border="0" style="visibility: hidden;">
+		        <button><img src="https://newsite.ilovebaby.com.tw/assets/images/icon_searchGrey.png"></button>
+		    </div>
+		    <div class="dropdown hide">
+				<div class="dropdownWrap">
+				</div>
+			</div>  <!-- /dropdown -->
+		</div> <!-- /searchbar -->
+	</form>
+</section>
+
+<!-- <form id="search" action="save-keyword.php" method="post" class="rel">
 	<div>
 		<input type="text" id="keyword" name="keyword" />
 		<input type="submit" value="搜尋" id="submit">
 	</div>
-	<div class="dropdown">
+	<div class="dropdown hide">
 		<div class="dropdownWrap">
 		</div>
-	</div> <!-- /dropdown -->
-</form>
+	</div> 
+</form> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script type="text/javascript">
@@ -69,6 +86,12 @@
 			myArray[len] = $("#keyword").val();
         	
         	saveToCookie(COOKIE_NAME,myArray);
+		});
+
+		$("#skey").on('click', function(event) {
+			event.preventDefault();
+			
+			$(".dropdown").removeClass('hide');
 		});
 
 		$(document).on('click', '.keywordDel', function(event) {

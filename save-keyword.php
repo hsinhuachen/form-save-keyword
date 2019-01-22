@@ -42,12 +42,12 @@
 	}
 </style>
 <section class="navblock">
-	<form action="" method="get" name="searchbanner" id="searchbanner">
+	<form action="save-keyword.php" method="get" name="searchbanner" id="searchbanner">
 		<div class="searchBar rel" style="display: block">
 		    <div class="searchBarBox">
 		        <input id="skey" name="skey" type="text" onkeyup="value=value.replace(/&amp;/g,'')" onfocus="this.value=''" placeholder="請輸入關鍵字...">
 		        <input name="imageField" type="image" src="https://newsite.ilovebaby.com.tw/templates/new/images/search.gif" border="0" style="visibility: hidden;">
-		        <button><img src="https://newsite.ilovebaby.com.tw/assets/images/icon_searchGrey.png"></button>
+		        <button id="searchSubmit"><img src="https://newsite.ilovebaby.com.tw/assets/images/icon_searchGrey.png"></button>
 		    </div>
 		    <div class="dropdown hide">
 				<div class="dropdownWrap">
@@ -80,10 +80,10 @@
 			var myArray = [];
 		}
 
-		$("#submit").on('click', function(event) {
+		$("#searchSubmit").on('click', function(event) {
 			// event.preventDefault();
 			var len = myArray.length;
-			myArray[len] = $("#keyword").val();
+			myArray[len] = $("#skey").val();
         	
         	saveToCookie(COOKIE_NAME,myArray);
 		});
